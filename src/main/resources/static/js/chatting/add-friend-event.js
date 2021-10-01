@@ -1,5 +1,5 @@
 import Regex from "/static/js/common/regex.js";
-import ElementFactory from "/static/js/common/elementFactory.js";
+import ElementFactory from "/static/js/common/element-factory.js";
 import Request from "/static/js/common/ajax-request.js";
 
 window.onload = function() {
@@ -34,7 +34,7 @@ window.onload = function() {
 
 	const selectedFriends = new Array();
 	
-	// 친구 초대하기 모달내에서 '추가' 버튼 이벤트
+	// 친구 추가 모달내에서 '추가' 버튼 이벤트
 	addFriendButton.addEventListener("click", () => {
 		const email = addFriendInput.value;
 
@@ -59,12 +59,12 @@ window.onload = function() {
 		}
 	});
 	
-	// 친구 초대하기 모달내에서 '전송' 버튼 이벤트
+	// 친구 초대 모달내에서 '전송' 버튼 이벤트
 	sendButton.addEventListener("click", () => {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
 		} else {
-			Request.postAsyncRequest("/invite", selectedFriends, (notExistUsers) => {
+			Request.postAsyncRequest("/add-friend", selectedFriends, (notExistUsers) => {
 				const givenNotExistUsers = JSON.parse(notExistUsers);
 				const addedFriendsCount = selectedFriends.length - givenNotExistUsers.length;
 				

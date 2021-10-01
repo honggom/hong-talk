@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class InviteService {
+public class AddFriendService {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -21,7 +21,7 @@ public class InviteService {
 	
 	private final SpUserRepository spUserRepository;
 	
-	public ArrayList<String> invite(ArrayList<String> friends) {
+	public ArrayList<String> addFriend(ArrayList<String> friends) {
 		
 		ArrayList<String> notExistUsers = new ArrayList<>();
 		

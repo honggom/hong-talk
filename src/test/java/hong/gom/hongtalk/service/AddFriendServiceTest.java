@@ -19,16 +19,16 @@ import hong.gom.hongtalk.repository.SpUserRepository;
 @SpringBootTest
 @Transactional
 @Rollback(true)
-public class InviteServiceTest {
+public class AddFriendServiceTest {
 	
 	@Autowired
-	InviteService inviteService;
+	AddFriendService addFriendService;
 	
 	@Autowired
 	SpUserRepository spUserRepository;
 	
 	@Test
-	void 친구초대시_가입여부가_파악되는지_테스트() {
+	void 친구추가시_가입여부가_파악되는지_테스트() {
 		// given
 		SpUser user1 = SpUser.builder()
 				.email("user1@naver.com")
@@ -52,7 +52,7 @@ public class InviteServiceTest {
 		friends.add("user5@naver.com");
 				
 		// when
-		ArrayList<String> notExistUsers = inviteService.invite(friends);
+		ArrayList<String> notExistUsers = addFriendService.addFriend(friends);
 		
 		// then
 		assertEquals(2, notExistUsers.size());

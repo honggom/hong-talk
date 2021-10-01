@@ -40,7 +40,9 @@ public class MailService {
         	helper.setText(html, true);
     	} catch (MessagingException e) {
     		logger.info("==== 메일 전송 중 오류 발생 ====");
-    		// TODO 예외 조치
+    		
+    		// TODO 예외 조치 추가 ...
+    		
     		logger.info("==== 메일 전송 중 오류 발생 ====");
     	}
         javaMailSender.send(message);

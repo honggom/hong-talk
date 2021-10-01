@@ -12,22 +12,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hong.gom.hongtalk.service.InviteService;
+import hong.gom.hongtalk.service.AddFriendService;
 import hong.gom.hongtalk.service.MailService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/invite")
 @RequiredArgsConstructor
-public class InviteController {
+public class AddFriendController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private final InviteService inviteService;
+	private final AddFriendService inviteService;
 	
-	@PostMapping("")
-	public ArrayList<String> invite(@RequestBody ArrayList<String> friends) {
-		ArrayList<String> notExistUsers = inviteService.invite(friends);
+	@PostMapping("/add-friend")
+	public ArrayList<String> addFriend(@RequestBody ArrayList<String> friends) {
+		ArrayList<String> notExistUsers = inviteService.addFriend(friends);
 		return notExistUsers;
 	}
 	
