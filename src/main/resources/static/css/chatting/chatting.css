@@ -1,0 +1,102 @@
+section {
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.invite-section-wrapper {
+	white-space: nowrap;
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    height: 90%;
+    width: 20%;
+}
+
+.invite-section-wrapper > .invite-button-wrapper {
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hand-point-left {
+	color: var(--main-dracula-color);
+	opacity: 0.7;
+}
+
+.chatting-section-wrapper {
+    background-color: #EBEBEB;
+    border-radius: 10px;
+    height: 90%;
+    width: 70%;
+}
+
+.invite-modal-wrapper {
+	position: absolute;
+	display: none;
+	width: 50%;
+	height: 50%;
+	min-height: 300px;
+}
+
+.invite-modal {
+	background-color: var(--main-bg-color);
+	opacity: var(--main-bg-opacity);
+	border-radius: 10px;
+	width: 100%;
+	height: 100%;
+	min-width: 500px;
+}
+
+.invite-title {
+	white-space: nowrap;
+	margin: 0;
+	color: white;
+	font-size: 1.7rem;
+	text-align: center;
+}
+
+.invite-input {
+	margin: 0px 0px 0px 20px;
+	display: inline;
+	margin-top: 30px;
+	width: 75%;
+	height: 24px;
+}
+
+.invite-add-button {
+	white-space: nowrap;
+	display: inline;
+	width: 15%;
+	height: 30px;
+}
+
+.invite-friend-list-wrapper {
+	height: 50%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.invite-friend-list-wrapper::-webkit-scrollbar {
+	width: 10px;
+}
+
+.invite-friend-list-wrapper::-webkit-scrollbar-thumb {
+	background-color: #2f3542;
+}
+
+.invite-friend-list li {
+	color: white;
+	list-style-type : none
+}
+
+.invite-friend-list .delete-button {
+	margin-left: 5px;
+}
+
+.invite-send-close-button-wrapper {
+	position: absolute;
+	top: 90%;
+	left: 47%;
+}

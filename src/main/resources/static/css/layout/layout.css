@@ -1,0 +1,77 @@
+:root {
+  --main-bg-color: black;
+  --main-bg-opacity: 0.7;
+  --main-dracula-color: #752AE3;
+}
+
+* {
+    font-family: 'Jua', sans-serif;
+}
+
+a {
+    text-decoration: none
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+nav {
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    opacity: var(--main-bg-opacity);
+    height: 7%;
+    min-height: 55px;
+}
+
+nav .hong-talk-logo > a{
+    color: white;
+    opacity: var(--main-bg-opacity);
+    cursor: pointer;
+}
+
+nav .main-menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--main-dracula-color);
+    cursor: pointer;
+}
+
+nav .main-menu:hover {
+    color: #B380FF;
+    cursor: pointer;
+}
+
+nav .board-icon {
+    font-size: 1.5rem;
+    color: white;
+    opacity: var(--main-bg-opacity);
+}
+
+nav .userinfo-div p {
+	color: var(--main-dracula-color);
+}
+
+section {
+    height: 89%;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--main-bg-color);
+    opacity: var(--main-bg-opacity);
+    color: var(--main-dracula-color);
+    height: 4%;
+    min-height: 30px;
+}
+
+footer > .made-by-tag {
+    margin-right : 5px;
+}

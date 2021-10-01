@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout/layout}">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/chatting/chatting.css">
+	<script type="module" src="/static/js/chatting/invite-event.js"></script>
+</head>
+
+<body>
+	<section layout:fragment="section">
+
+		<div class="invite-section-wrapper">
+			<div class="invite-button-wrapper">
+				<p>移쒓뎄 紐⑸줉</p>
+				<div>
+					<button id="invite-button" type="button">珥덈�</button>
+					<span class="hand-point-left">
+						<i class="fas fa-hand-point-left"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="chatting-section-wrapper">
+			梨꾪똿怨듦컙
+		</div>
+
+		<div id="invite-modal-wrapper" class="invite-modal-wrapper">
+			<div class="invite-modal">
+				<p class="invite-title">移쒓뎄 珥덈��븯湲�</p>
+
+				<input id="invite-input" class="invite-input" type="text" placeholder="珥덈��븷 移쒓뎄�쓽 �씠硫붿씪�쓣 �엯�젰�빐二쇱꽭�슂..." value="">
+				<button id="invite-add-button" class="invite-add-button" type="button">異붽�</button>
+
+				<div class="invite-friend-list-wrapper">
+					<ul id="invite-friend-list" class="invite-friend-list">
+					</ul>
+				</div>
+
+				<div class="invite-send-close-button-wrapper">
+					<button id="invite-send-button" type="button">�쟾�넚</button>
+					<button id="modal-close-button" type="button">X</button>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+section {
+	display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-wrapper {
+    margin-bottom : 100px;
+}
+
+.main-wrapper > .hong-talk-logo {
+    font-family: 'Jua', sans-serif;
+    font-size : 4rem;
+}
+
+.main-wrapper > .sub-wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

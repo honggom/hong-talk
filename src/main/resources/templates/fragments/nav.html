@@ -1,0 +1,36 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<nav th:fragment="nav">
+	<div class="hong-talk-logo">
+		<a href="/">HongTalk</a>
+	</div>
+	<div class="main-menu">
+		<div>
+			<span class="board-icon">
+				<i class="far fa-clipboard"></i>
+			</span>
+		</div>
+		<p>샘플1</p>
+	</div>
+	<div class="main-menu">
+		<div>
+			<span class="board-icon">
+				<i class="far fa-clipboard"></i>
+			</span>
+		</div>
+		<p>샘플2</p>
+	</div>
+	<div class="main-menu">
+		<div>
+			<span class="board-icon">
+				<i class="far fa-clipboard"></i>
+			</span>
+		</div>
+		<p>샘플3</p>
+	</div>
+	<div class="userinfo-div" sec:authorize="authenticated">
+		<p id="logged-user" sec:authentication="principal.username"></p>
+	</div>
+	<div class="userinfo-div" sec:authorize="!authenticated">
+		<p>안녕하세요.</p>
+	</div>
+</nav>
