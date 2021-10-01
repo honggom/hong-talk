@@ -6,7 +6,7 @@ section {
     width: 100%;
 }
 
-.invite-section-wrapper {
+.friend-section-wrapper {
 	white-space: nowrap;
     background-color: #EBEBEB;
     border-radius: 10px;
@@ -14,7 +14,7 @@ section {
     width: 20%;
 }
 
-.invite-section-wrapper > .invite-button-wrapper {
+.friend-section-wrapper > .add-friend-button-wrapper {
 	display: flex;
     justify-content: space-around;
     align-items: center;
@@ -32,7 +32,7 @@ section {
     width: 70%;
 }
 
-.invite-modal-wrapper {
+.add-friend-modal-wrapper {
 	position: absolute;
 	display: none;
 	width: 50%;
@@ -40,7 +40,7 @@ section {
 	min-height: 300px;
 }
 
-.invite-modal {
+.add-friend-modal {
 	background-color: var(--main-bg-color);
 	opacity: var(--main-bg-opacity);
 	border-radius: 10px;
@@ -49,7 +49,7 @@ section {
 	min-width: 500px;
 }
 
-.invite-title {
+.add-friend-title {
 	white-space: nowrap;
 	margin: 0;
 	color: white;
@@ -57,7 +57,7 @@ section {
 	text-align: center;
 }
 
-.invite-input {
+.add-friend-input {
 	margin: 0px 0px 0px 20px;
 	display: inline;
 	margin-top: 30px;
@@ -65,37 +65,37 @@ section {
 	height: 24px;
 }
 
-.invite-add-button {
+.add-friend-button {
 	white-space: nowrap;
 	display: inline;
 	width: 15%;
 	height: 30px;
 }
 
-.invite-friend-list-wrapper {
+.add-friend-list-wrapper {
 	height: 50%;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
 
-.invite-friend-list-wrapper::-webkit-scrollbar {
+.add-friend-list-wrapper::-webkit-scrollbar {
 	width: 10px;
 }
 
-.invite-friend-list-wrapper::-webkit-scrollbar-thumb {
+.add-friend-list-wrapper::-webkit-scrollbar-thumb {
 	background-color: #2f3542;
 }
 
-.invite-friend-list li {
+.add-friend-list li {
 	color: white;
 	list-style-type : none
 }
 
-.invite-friend-list .delete-button {
+.add-friend-list .delete-button {
 	margin-left: 5px;
 }
 
-.invite-send-close-button-wrapper {
+.add-friend-modal-close-button-wrapper {
 	position: absolute;
 	top: 90%;
 	left: 47%;

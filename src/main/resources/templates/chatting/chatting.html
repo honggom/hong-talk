@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layout/layout}">
 
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/css/chatting/chatting.css">
-	<script type="module" src="/static/js/chatting/invite-event.js"></script>
+	<script type="module" src="/static/js/chatting/add-friend-event.js"></script>
 </head>
 
 <body>
 	<section layout:fragment="section">
 
-		<div class="invite-section-wrapper">
-			<div class="invite-button-wrapper">
-				<p>移쒓뎄 紐⑸줉</p>
+		<div class="friend-section-wrapper">
+			<div class="add-friend-button-wrapper">
+				<p>친구 목록</p>
 				<div>
-					<button id="invite-button" type="button">珥덈�</button>
+					<button id="add-friend-modal-open-button" type="button">친구 추가</button>
 					<span class="hand-point-left">
 						<i class="fas fa-hand-point-left"></i>
 					</span>
@@ -24,24 +24,24 @@
 		</div>
 
 		<div class="chatting-section-wrapper">
-			梨꾪똿怨듦컙
+			채팅구역
 		</div>
 
-		<div id="invite-modal-wrapper" class="invite-modal-wrapper">
-			<div class="invite-modal">
-				<p class="invite-title">移쒓뎄 珥덈��븯湲�</p>
+		<div id="add-friend-modal-wrapper" class="add-friend-modal-wrapper">
+			<div class="add-friend-modal">
+				<p class="add-friend-title">친구 추가</p>
 
-				<input id="invite-input" class="invite-input" type="text" placeholder="珥덈��븷 移쒓뎄�쓽 �씠硫붿씪�쓣 �엯�젰�빐二쇱꽭�슂..." value="">
-				<button id="invite-add-button" class="invite-add-button" type="button">異붽�</button>
+				<input id="add-friend-input" class="add-friend-input" type="text" placeholder="친구의 이메일을 입력해주세요." value="">
+				<button id="add-friend-button" class="add-friend-button" type="button">추가</button>
 
-				<div class="invite-friend-list-wrapper">
-					<ul id="invite-friend-list" class="invite-friend-list">
+				<div class="add-friend-list-wrapper">
+					<ul id="add-friend-list" class="add-friend-list">
 					</ul>
 				</div>
 
-				<div class="invite-send-close-button-wrapper">
-					<button id="invite-send-button" type="button">�쟾�넚</button>
-					<button id="modal-close-button" type="button">X</button>
+				<div class="add-friend-modal-close-button-wrapper">
+					<button id="send-button" type="button">전송</button>
+					<button id="add-friend-modal-close-button" type="button">X</button>
 				</div>
 			</div>
 		</div>

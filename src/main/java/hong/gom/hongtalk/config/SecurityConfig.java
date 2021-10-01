@@ -13,8 +13,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final SpOAuth2SuccessHandler successHandler;
     
-    // TODO 테스트
-    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()

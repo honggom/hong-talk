@@ -4,22 +4,22 @@ import Request from "/static/js/common/ajax-request.js";
 
 window.onload = function() {
 
-	const modal = document.getElementById("invite-modal-wrapper");
-	const inviteButton = document.getElementById("invite-button");
-	const inviteAddButton = document.getElementById("invite-add-button");
-	const inviteInput = document.getElementById("invite-input");
-	const inviteFriendList = document.getElementById("invite-friend-list");
-	const inviteSendButton = document.getElementById("invite-send-button");
-	const closeButton = document.getElementById("modal-close-button");
+	const modal = document.getElementById("add-friend-modal-wrapper");
+	const addFriendModalOpenButton = document.getElementById("add-friend-modal-open-button");
+	const addFriendButton = document.getElementById("add-friend-button");
+	const addFriendInput = document.getElementById("add-friend-input");
+	const addFriendList = document.getElementById("add-friend-list");
+	const sendButton = document.getElementById("send-button");
+	const addFriendModalCloseButton = document.getElementById("add-friend-modal-close-button");
 	const loggedUserEmail = document.getElementById("logged-user").innerText;
 	
-	// 친구 초대하기 모달 창 닫기 이벤트
-	closeButton.addEventListener("click", () => {
+	// 친구 추가 모달 창 닫기 이벤트
+	addFriendModalCloseButton.addEventListener("click", () => {
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 	
-	// 친구 초대하기 모달 창 열기 이벤트
-	inviteButton.addEventListener("click", () => {
+	// 친구 추가 모달 창 열기 이벤트
+	addFriendModalOpenButton.addEventListener("click", () => {
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 
@@ -35,8 +35,8 @@ window.onload = function() {
 	const selectedFriends = new Array();
 	
 	// 친구 초대하기 모달내에서 '추가' 버튼 이벤트
-	inviteAddButton.addEventListener("click", () => {
-		const email = inviteInput.value;
+	addFriendButton.addEventListener("click", () => {
+		const email = addFriendInput.value;
 
 		if (email === loggedUserEmail) {
 			alert("본인은 초대할 수 없습니다.");
@@ -48,7 +48,7 @@ window.onload = function() {
 					const deleteButton = newFriend.querySelector(".delete-button");
 					deleteButton.addEventListener("click", deleteSelectedFriend);
 
-					inviteFriendList.appendChild(newFriend);
+					addFriendList.appendChild(newFriend);
 					selectedFriends.push(email);
 				} else {
 					alert("이미 추가된 친구입니다.");
@@ -60,20 +60,20 @@ window.onload = function() {
 	});
 	
 	// 친구 초대하기 모달내에서 '전송' 버튼 이벤트
-	inviteSendButton.addEventListener("click", () => {
+	sendButton.addEventListener("click", () => {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
 		} else {
 			Request.postAsyncRequest("/invite", selectedFriends, (notExistUsers) => {
 				const givenNotExistUsers = JSON.parse(notExistUsers);
-				const invitedFriendsCount = selectedFriends.length - givenNotExistUsers.length;
+				const addedFriendsCount = selectedFriends.length - givenNotExistUsers.length;
 				
-				if (selectedFriends.length === givenNotExistUsers.length) {
+				if (selectedFriends.length === givenNotExistUsers.length) { // 친구 추가할 대상이 DB상 전부 존재하지 않는 경우
 					alert(`${givenNotExistUsers} : 해당 친구는 존재하지 않습니다.`);	
-				} else if (givenNotExistUsers.length === 0) {
+				} else if (givenNotExistUsers.length === 0) {               // 친구 추가할 대상이 DB상 전부 존재하는 경우
 					alert("초대가 완료되었습니다."); 
-				} else {
-					alert(`${invitedFriendsCount}명에게 초대가 완료되었습니다.\n${givenNotExistUsers} : 존재하지 않는 친구입니다.`);
+				} else {                                                    // 친구 추가할 대상이 DB상 일부만 존재하는 경우
+					alert(`${addedFriendsCount}명에게 초대가 완료되었습니다.\n${givenNotExistUsers} : 존재하지 않는 친구입니다.`);
 				}
 			});
 		}
