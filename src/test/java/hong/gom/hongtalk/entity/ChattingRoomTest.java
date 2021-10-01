@@ -25,7 +25,7 @@ class ChattingRoomTest {
 	
 	@Test
 	@Transactional
-	void a() {
+	void SpUser와_ChattingRoom이_1대N_관계가_형성되는지_테스트() {
 		//given
 		ChattingRoom cttr = new ChattingRoom();
 		
