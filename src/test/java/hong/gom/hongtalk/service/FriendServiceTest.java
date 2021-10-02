@@ -25,41 +25,7 @@ public class FriendServiceTest {
 	
 	@Autowired
 	SpUserRepository spUserRepository;
-	
-	// TODO 테스트 케이스 수정
-	/*
-	@Test
-	void 친구추가시_가입여부가_파악되는지_테스트() {
-		// given
-		SpUser user1 = SpUser.builder()
-				.email("user1@naver.com")
-				.build();
 		
-		SpUser user2 = SpUser.builder()
-				.email("user2@naver.com")
-				.build();
-		
-		SpUser user3 = SpUser.builder()
-				.email("user3@naver.com")
-				.build();
-		
-		spUserRepository.saveAll(List.of(user1, user2, user3));
-		
-		ArrayList<String> friends = new ArrayList<>();
-		friends.add("user1@naver.com");
-		friends.add("user2@naver.com");
-		friends.add("user3@naver.com");
-		friends.add("user4@naver.com");
-		friends.add("user5@naver.com");
-				
-		// when
-		ArrayList<String> notExistUsers = friendService.addFriend(friends);
-		
-		// then
-		assertEquals(2, notExistUsers.size());
-	}
-	*/
-	
 	@Test
 	void 존재하는_유저와_존재하지_않는_유저를_구분한다() {
 		// given
