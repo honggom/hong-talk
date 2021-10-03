@@ -24,7 +24,7 @@ public class FriendService {
 	private final SpUserRepository spUserRepository;
 	
 	// TODO 테스트 케이스 작성
-	public void addFriend(List<String> friends) {		
+	public void addFriends(List<String> friends) {		
 		// TODO
 		// 1. 트랜잭션 
 		// 2. 이미 초대된 사람인지 파악

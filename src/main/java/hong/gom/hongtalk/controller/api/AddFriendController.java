@@ -23,7 +23,7 @@ public class AddFriendController {
 	@PostMapping("/add-friend")
 	public List<String> addFriend(@RequestBody List<String> friends) {
 		Map<String, List<String>> existUsersAndNotExistUsers = friendService.separeteFriends(friends);
-		friendService.addFriend(existUsersAndNotExistUsers.get("existUsers"));
+		friendService.addFriends(existUsersAndNotExistUsers.get("existUsers"));
 		return existUsersAndNotExistUsers.get("notExistUsers");
 	}
 	
