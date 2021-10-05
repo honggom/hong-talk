@@ -6,21 +6,20 @@ import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import hong.gom.hongtalk.entity.SpUser;
 
-@SpringBootTest
-@Transactional
+@DataJpaTest
 class SpUserRepositoryTest {
 	
 	@Autowired
 	SpUserRepository spUserRepository;
 	
 	@Test
-	@Rollback(true)
-	void existsByEmail_함수_동작_테스트() {
+	void DB상에_해당_이메일의_유저가_존재하면_true를_반환한다() {
 		// given
 		SpUser user1 = SpUser.builder()
 						.email("cavok699@naver.com")

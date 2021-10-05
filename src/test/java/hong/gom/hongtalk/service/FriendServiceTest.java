@@ -22,33 +22,7 @@ public class FriendServiceTest {
 	
 	@Autowired
 	FriendService friendService;
-	
-	@Autowired
-	SpUserRepository spUserRepository;
-	
-	/* FIXME separeteFriends() 메서드 삭제됨
-	@Test
-	void 존재하는_유저와_존재하지_않는_유저를_구분한다() {
-		// given
-		SpUser user1 = SpUser.builder()
-				.email("a@naver.com")
-				.build();
-		
-		SpUser user2 = SpUser.builder()
-				.email("b@naver.com")
-				.build();
-		
-		spUserRepository.saveAll(List.of(user1, user2));
-		List<String> friends = List.of("a@naver.com", "b@naver.com", "notExist@naver.com");
-		
-		// when
-		Map<String, List<String>> existUsersAndNotExistUsers = friendService.separeteFriends(friends);
-		
-		// then
-		assertEquals(2, existUsersAndNotExistUsers.get("existUsers").stream().count());
-		assertEquals(1, existUsersAndNotExistUsers.get("notExistUsers").stream().count());
-	}
-	*/
+
 }
 
 

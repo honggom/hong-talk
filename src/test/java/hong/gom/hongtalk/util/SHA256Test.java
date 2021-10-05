@@ -13,7 +13,7 @@ class SHA256Test {
 	SHA256 sha256;
 
 	@Test
-	void SHA256_암호화가_되는지_테스트() throws Exception{
+	void 입력받은_문자열이_SHA256으로_암호화가된다() throws Exception{
 		String plainText = "hong";
 		String encryptedText = sha256.encrypt(plainText);
 		

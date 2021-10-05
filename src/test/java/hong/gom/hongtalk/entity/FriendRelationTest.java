@@ -25,29 +25,38 @@ public class FriendRelationTest {
 	@Test
 	@Transactional 
 	@Rollback(true)
-	void 친구관게_1대N이_형성되는지_테스트() {
+	void 친구관게_1대N이_형성된다() {
 		// given
 		SpUser host = SpUser.builder()
 				            .email("hong")
 				            .build();
 
-		SpUser friend = SpUser.builder()
+		SpUser friend1 = SpUser.builder()
 				               .email("ryeong")
 				               .build();
+		
+		SpUser friend2 = SpUser.builder()
+	                           .email("gom")
+              	               .build();
 
 
 		FriendRelation fr = FriendRelation.builder()
 				                           .user(host)
-				                           .friend(friend)
+				                           .friend(friend1)
 				                           .build();
+		
+		FriendRelation fr2 = FriendRelation.builder()
+                                           .user(host)
+                                           .friend(friend2)
+                                           .build();
 
-		spUserRepository.saveAll(List.of(host, friend));
-		friendRelationRepository.saveAll(List.of(fr));
+		spUserRepository.saveAll(List.of(host, friend1, friend2));
+		friendRelationRepository.saveAll(List.of(fr, fr2));
 		
 		// when
 		List<FriendRelation> fs = friendRelationRepository.findByUser(host);
 		
 		// then
-		assertEquals("ryeong", fs.get(0).getFriend().getEmail());
+		assertEquals(2, fs.size());
 	}
 }

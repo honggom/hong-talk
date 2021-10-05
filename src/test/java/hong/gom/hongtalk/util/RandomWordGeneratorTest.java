@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class RandomWordGeneratorTest {
 	
 	@Test
-	void 랜덤문자열이_생성되는지_테스트() {
+	void 문자열의_길이를_받고_해당_길이로_랜덤_문자열을_반환한다() {
 		// given, when
 		String s1 = RandomWordGenerator.generateRandomWord(10);
 		
