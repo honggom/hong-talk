@@ -25,7 +25,8 @@ public class FriendServiceTest {
 	
 	@Autowired
 	SpUserRepository spUserRepository;
-		
+	
+	/* FIXME separeteFriends() 메서드 삭제됨
 	@Test
 	void 존재하는_유저와_존재하지_않는_유저를_구분한다() {
 		// given
@@ -47,6 +48,7 @@ public class FriendServiceTest {
 		assertEquals(2, existUsersAndNotExistUsers.get("existUsers").stream().count());
 		assertEquals(1, existUsersAndNotExistUsers.get("notExistUsers").stream().count());
 	}
+	*/
 }
 
 

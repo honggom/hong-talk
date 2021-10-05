@@ -41,7 +41,7 @@ public class MailService {
     	} catch (MessagingException e) {
     		logger.info("==== 메일 전송 중 오류 발생 ====");
     		
-    		// TODO 예외 조치 추가 ...
+    		// TODO 예외 조치
     		
     		logger.info("==== 메일 전송 중 오류 발생 ====");
     	}

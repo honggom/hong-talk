@@ -25,6 +25,8 @@ public class AddFriendHistory extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    private String key;
+    
     @OneToOne
     @JoinColumn(name = "from_id")
     private SpUser fromId;
@@ -32,8 +34,5 @@ public class AddFriendHistory extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "to_id")
     private SpUser toId;
-    
-    
-    
 
 }

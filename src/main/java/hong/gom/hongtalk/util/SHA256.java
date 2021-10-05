@@ -16,11 +16,11 @@ public class SHA256 {
     }
 
     private String bytesToHex(byte[] bytes) {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            builder.append(String.format("%02x", b));
+        	sb.append(String.format("%02x", b));
         }
-        return builder.toString();
+        return sb.toString();
     }
 
 }

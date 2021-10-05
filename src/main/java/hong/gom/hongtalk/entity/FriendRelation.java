@@ -4,21 +4,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "chatting_room")
-public class ChattingRoom extends BaseEntity {
+@Builder
+@Entity
+@Table(name = "friend_relation")
+public class FriendRelation {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private SpUser user;
+    
+    @OneToOne
+    @JoinColumn(name = "friend_id")
+    private SpUser friend;
     
 }
