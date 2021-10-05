@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import hong.gom.hongtalk.dto.User;
 import hong.gom.hongtalk.dto.enums.UserStatus;
+import hong.gom.hongtalk.repository.FriendRelationRepository;
 import hong.gom.hongtalk.repository.SpUserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,9 @@ public class FriendService {
 	
 	private final SpUserRepository spUserRepository;
 	
-	public void addFriends(List<String> emails) {		
+	private final FriendRelationRepository friendRelationRepository;
+	
+	public void addFriends(List<String> emails, String hostEmail) {		
 		// TODO
 		// 1. 트랜잭션 
 		// 2. 이미 초대된 사람인지 파악
@@ -31,7 +34,7 @@ public class FriendService {
 		     .forEach(email -> System.out.println(email + " 에게 메일을 보낸다."));
 	}
 	
-	public List<User> validate(List<String> emails) {
+	public List<User> validate(List<String> emails, String hostEmail) {
 		List<User> validatedUsers = new ArrayList<>();
 		
 		emails.stream().forEach(email -> {

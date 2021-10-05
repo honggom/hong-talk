@@ -11,4 +11,7 @@ public interface FriendRelationRepository extends JpaRepository<FriendRelation, 
 	
 	List<FriendRelation> findByUser(SpUser user);
 	
+	List<FriendRelation> findByFriend(SpUser friend);
+	
+	int countByUserAndFriend(SpUser user, SpUser friend);
 }

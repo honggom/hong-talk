@@ -1,5 +1,6 @@
 package hong.gom.hongtalk.controller.api;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,8 @@ public class AddFriendController {
 	private final FriendService friendService;
 	
 	@PostMapping("/add-friend")
-	public List<String> addFriend(@RequestBody List<String> email) {
+	public List<String> addFriend(@RequestBody List<String> email, Principal principal) {
+
 		return null;
 	}
 	

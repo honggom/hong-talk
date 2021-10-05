@@ -20,7 +20,7 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "friend_relation")
-public class FriendRelation {
+public class FriendRelation extends BaseEntity {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
