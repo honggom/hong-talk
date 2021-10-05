@@ -1,0 +1,24 @@
+select * from friend_relation fr ;
+select * from sp_user su ;
+
+INSERT INTO hong_talk.sp_user
+(created_at, updated_at, email, enabled, name, password)
+VALUES(NULL, NULL, 'a@na.com', 0, NULL, NULL);
+
+INSERT INTO hong_talk.sp_user
+(created_at, updated_at, email, enabled, name, password)
+VALUES(NULL, NULL, 'b@na.com', 0, NULL, NULL);
+
+/*
+ * a = 2
+ * b = 3
+ * c = 4
+ * */
+
+INSERT INTO hong_talk.friend_relation
+(created_at, updated_at, friend_id, user_id)
+VALUES(NULL, NULL, 1, 2);
+
+INSERT INTO hong_talk.friend_relation
+(created_at, updated_at, friend_id, user_id)
+VALUES(NULL, NULL, 2, 1);

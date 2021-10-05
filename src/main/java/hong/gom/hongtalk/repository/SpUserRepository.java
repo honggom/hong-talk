@@ -9,6 +9,8 @@ public interface SpUserRepository extends JpaRepository<SpUser, Long> {
 
     Optional<SpUser> findSpUserByEmail(String email);
     
+    SpUser findByEmail(String email);
+    
     boolean existsByEmail(String email);
 
 }

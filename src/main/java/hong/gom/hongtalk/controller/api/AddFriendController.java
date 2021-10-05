@@ -22,8 +22,8 @@ public class AddFriendController {
 	private final FriendService friendService;
 	
 	@PostMapping("/add-friend")
-	public List<String> addFriend(@RequestBody List<String> email, Principal principal) {
-
+	public List<String> addFriend(@RequestBody List<String> emails, Principal principal) {
+		friendService.addFriends(emails, principal.getName());
 		return null;
 	}
 	
