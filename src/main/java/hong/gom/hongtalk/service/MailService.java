@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
+import hong.gom.hongtalk.dto.AddFriendHistoryDTO;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class MailService {
-	
-	private static final String FROM = "HongTalk";
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -25,17 +24,18 @@ public class MailService {
 	
 	private final SpringTemplateEngine templateEngine;
 	
-    public void sendTo(String email, String keyMessage) {
+    public void sendTo(AddFriendHistoryDTO dto) {
     	MimeMessage message = javaMailSender.createMimeMessage();
     	
     	try {
         	MimeMessageHelper helper = new MimeMessageHelper(message, true);
         	
         	Context context = new Context();
-        	context.setVariable("from", FROM);
+        	context.setVariable("from", dto.getHostEmail());
+        	context.setVariable("keyMessage", dto.getKeyMessage());
         	
         	helper.setSubject("테스트 메일 전송");
-        	helper.setTo(email);
+        	helper.setTo(dto.getFriendEmail());
         	String html = templateEngine.process("mail/mail-template", context);
         	helper.setText(html, true);
     	} catch (MessagingException e) {

@@ -11,5 +11,4 @@ public class HongTalkApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HongTalkApplication.class, args);
 	}
-
 }

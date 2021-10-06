@@ -69,9 +69,14 @@ public class FriendService {
 	private void addFriends(List<UserDTO> validatedUsers, String hostEmail) {				
 		validatedUsers.stream().forEach(user -> {
 			if(user.getStatus() == UserStatus.CAN_ADD) {
-				String keyMessage = RandomWordGenerator.generateRandomWord();
-				mailService.sendTo(user.getEmail(), keyMessage);
-				saveHistory(new AddFriendHistoryDTO(hostEmail, user.getEmail(), keyMessage));
+				AddFriendHistoryDTO addFriendHistoryDTO = AddFriendHistoryDTO.builder()
+						                                .hostEmail(hostEmail)
+						                                .friendEmail(user.getEmail())
+						                                .keyMessage(RandomWordGenerator.generateRandomWord())
+						                                .build();
+				
+				mailService.sendTo(addFriendHistoryDTO);
+				saveHistory(addFriendHistoryDTO);
 			}
 		});
 	}
@@ -86,6 +91,3 @@ public class FriendService {
 		addFriendHistoryRepository.save(history);
 	}
 }
-
-
-

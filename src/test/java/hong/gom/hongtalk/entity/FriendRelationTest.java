@@ -39,7 +39,6 @@ public class FriendRelationTest {
 	                           .email("gom")
               	               .build();
 
-
 		FriendRelation fr = FriendRelation.builder()
 				                           .user(host)
 				                           .friend(friend1)
