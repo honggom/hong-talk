@@ -64,17 +64,9 @@ window.onload = function() {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
 		} else {
-			Request.postAsyncRequest("/add-friend", selectedFriends, (notExistUsers) => {
-				const givenNotExistUsers = JSON.parse(notExistUsers);
-				const addedFriendsCount = selectedFriends.length - givenNotExistUsers.length;
-				
-				if (selectedFriends.length === givenNotExistUsers.length) { // 친구 추가할 대상이 DB상 전부 존재하지 않는 경우
-					alert(`${givenNotExistUsers} : 해당 친구는 존재하지 않습니다.`);	
-				} else if (givenNotExistUsers.length === 0) {               // 친구 추가할 대상이 DB상 전부 존재하는 경우
-					alert("초대가 완료되었습니다."); 
-				} else {                                                    // 친구 추가할 대상이 DB상 일부만 존재하는 경우
-					alert(`${addedFriendsCount}명에게 초대가 완료되었습니다.\n${givenNotExistUsers} : 존재하지 않는 친구입니다.`);
-				}
+			Request.postAsyncRequest("/add-friend", selectedFriends, (validatedUsers) => {
+				const givenValidatedUsers = JSON.parse(validatedUsers);
+				console.log(givenValidatedUsers);
 			});
 		}
 	});

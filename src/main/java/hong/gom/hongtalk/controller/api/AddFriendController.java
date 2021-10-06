@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import hong.gom.hongtalk.dto.UserDTO;
 import hong.gom.hongtalk.service.FriendService;
 import lombok.RequiredArgsConstructor;
 
@@ -22,9 +23,8 @@ public class AddFriendController {
 	private final FriendService friendService;
 	
 	@PostMapping("/add-friend")
-	public List<String> addFriend(@RequestBody List<String> emails, Principal principal) {
-		friendService.addFriends(emails, principal.getName());
-		return null;
+	public List<UserDTO> addFriend(@RequestBody List<String> emails, Principal principal) {
+		return friendService.addFriendsService(emails, principal.getName());
 	}
 	
 }

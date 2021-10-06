@@ -25,7 +25,7 @@ public class MailService {
 	
 	private final SpringTemplateEngine templateEngine;
 	
-    public void sendTo(String email) {
+    public void sendTo(String email, String keyMessage) {
     	MimeMessage message = javaMailSender.createMimeMessage();
     	
     	try {

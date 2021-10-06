@@ -2,17 +2,16 @@ package hong.gom.hongtalk.util;
 
 import java.util.Random;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class RandomWordGenerator {
+	
+	private final static int RANDOM_WORD_LENGTH = 10;
 
-	public static String generateRandomWord(int wordLength) {
+	public static String generateRandomWord() {
 
 		Random random = new Random();
 		StringBuilder sb = new StringBuilder();
 
-		for (int i = 0; i < wordLength; i++) {
+		for (int i = 0; i < RANDOM_WORD_LENGTH; i++) {
 			if (random.nextBoolean()) {
 				sb.append((char) ((int) (random.nextInt(26)) + 97));
 			} else {
