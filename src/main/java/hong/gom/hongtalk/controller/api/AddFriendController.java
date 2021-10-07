@@ -29,9 +29,10 @@ public class AddFriendController {
 		return friendService.addFriendsService(emails, principal.getName());
 	}
 	
-	// TODO 
-	// 1. 친구 추가 승낙 컨트롤러 작성
-	// @PostMapping("/accpet")
+	@PostMapping("/accpet")
+	public void accpet( ) {
+		
+	}
 	
 	// 2. 친구 추가 거절 컨트롤러 작성 PUT(수정) 메서드
 	// @PutMapping("/refuse")

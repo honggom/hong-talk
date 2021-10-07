@@ -12,6 +12,7 @@ window.onload = function() {
 	const sendButton = document.getElementById("send-button");
 	const addFriendModalCloseButton = document.getElementById("add-friend-modal-close-button");
 	const loggedUserEmail = document.getElementById("logged-user").innerText;
+	const loadingRing = document.getElementById("hong-talk-loading-template").content.cloneNode(true);
 	
 	// 친구 추가 모달 창 닫기 이벤트
 	addFriendModalCloseButton.addEventListener("click", () => {
@@ -64,7 +65,13 @@ window.onload = function() {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
 		} else {
+			console.log("start loading ...");
+			
+			// TODO
+			document.body.appendChild(loadingRing);
+			
 			Request.postAsyncRequest("/add-friend", selectedFriends, (validatedUsers) => {
+				console.log("end loading ...");
 				const givenValidatedUsers = JSON.parse(validatedUsers);
 				console.log(givenValidatedUsers);
 			});

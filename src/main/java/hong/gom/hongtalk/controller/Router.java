@@ -24,7 +24,6 @@ public class Router {
     	return "error/access-denied";
     }
     
-    @PreAuthorize("isAuthenticated()")
     @GetMapping("/chatting")
     public Object check(Principal principal){
         logger.info(principal.getName());

@@ -10,6 +10,11 @@
 
 <body>
 	<section layout:fragment="section">
+		<template id="hong-talk-loading-template">
+			<div class="hong-talk-loading">
+				<div class="hong-talk-ring"></div>
+			</div>
+		</template>
 
 		<div class="friend-section-wrapper">
 			<div class="add-friend-button-wrapper">
@@ -30,8 +35,8 @@
 		<div id="add-friend-modal-wrapper" class="add-friend-modal-wrapper">
 			<div class="add-friend-modal">
 				<p class="add-friend-title">친구 추가</p>
-
-				<input id="add-friend-input" class="add-friend-input" type="text" placeholder="친구의 이메일을 입력해주세요." value="">
+				<input id="add-friend-input" class="add-friend-input" type="text" placeholder="친구의 이메일을 입력해주세요."
+					value="">
 				<button id="add-friend-button" class="add-friend-button" type="button">추가</button>
 
 				<div class="add-friend-list-wrapper">
@@ -45,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</section>
 </body>
 
