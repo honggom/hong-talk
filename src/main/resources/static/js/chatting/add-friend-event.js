@@ -105,7 +105,6 @@ window.onload = function() {
 		} else {
 			msg += `${user.email} 는 존재하지 않는 회원입니다.`;
 		}
-
 		return msg;
 	}
 

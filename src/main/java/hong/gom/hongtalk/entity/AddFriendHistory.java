@@ -12,8 +12,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,12 +28,12 @@ public class AddFriendHistory extends BaseEntity {
     private Long id;
     
     @OneToOne
-    @JoinColumn(name = "from_user")
-    private SpUser from;
+    @JoinColumn(name = "user_id")
+    private SpUser user;
     
     @OneToOne
-    @JoinColumn(name = "to_user")
-    private SpUser to;
+    @JoinColumn(name = "friend_id")
+    private SpUser friend;
     
     private String keyMessage;
 

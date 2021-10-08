@@ -76,18 +76,35 @@ public class FriendService {
 						                                .build();
 				
 				mailService.sendTo(addFriendHistoryDTO);
-				saveHistory(addFriendHistoryDTO);
+				setHistory(addFriendHistoryDTO);
 			}
 		});
 	}
 	
-	private void saveHistory(AddFriendHistoryDTO dto) {
-		AddFriendHistory history = AddFriendHistory.builder()
-		                                    .from(spUserRepository.findByEmail(dto.getHostEmail()))
-		                                    .to(spUserRepository.findByEmail(dto.getFriendEmail()))
-		                                    .keyMessage(dto.getKeyMessage())
-		                                    .build();
+	private void setHistory(AddFriendHistoryDTO dto) {
+		SpUser from = spUserRepository.findByEmail(dto.getHostEmail());
+		SpUser to = spUserRepository.findByEmail(dto.getFriendEmail());
+		AddFriendHistory history = addFriendHistoryRepository.findByUserAndFriend(from, to);
 		
-		addFriendHistoryRepository.save(history);
+		if(history == null) { // 이전에 초대한 기록이 없으면 
+			addFriendHistoryRepository.save(AddFriendHistory.builder()
+								                    .user(from)
+								                    .friend(to)
+								                    .keyMessage(dto.getKeyMessage())
+								                    .build()
+                                            );
+		} else {
+			history.setKeyMessage(dto.getKeyMessage());
+			addFriendHistoryRepository.save(history);
+		}
 	}
 }
+
+
+
+
+
+
+
+
+
