@@ -2,6 +2,9 @@ import Regex from "/static/js/common/regex.js";
 import ElementFactory from "/static/js/common/element-factory.js";
 import Request from "/static/js/common/ajax-request.js";
 
+import LoadingRing from "/static/js/components/loading-ring.js";
+window.customElements.define("loading-ring", LoadingRing);
+
 window.onload = function() {
 
 	const modal = document.getElementById("add-friend-modal-wrapper");
@@ -12,29 +15,20 @@ window.onload = function() {
 	const sendButton = document.getElementById("send-button");
 	const addFriendModalCloseButton = document.getElementById("add-friend-modal-close-button");
 	const loggedUserEmail = document.getElementById("logged-user").innerText;
-	const loadingRing = document.getElementById("hong-talk-loading-template").content.cloneNode(true);
-	
+	const friendListWrapper = document.getElementById("friend-list-wrapper");
+
 	// 친구 추가 모달 창 닫기 이벤트
 	addFriendModalCloseButton.addEventListener("click", () => {
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
-	
+
 	// 친구 추가 모달 창 열기 이벤트
 	addFriendModalOpenButton.addEventListener("click", () => {
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 
-	function deleteSelectedFriend() {
-		const selectedFriend = this.parentElement.parentElement;
-		const email = this.previousSibling.innerText;
-		const index = selectedFriends.indexOf(email);
-
-		selectedFriends.splice(index, 1);
-		selectedFriend.remove();
-	}
-
 	const selectedFriends = new Array();
-	
+
 	// 친구 추가 모달내에서 '추가' 버튼 이벤트
 	addFriendButton.addEventListener("click", () => {
 		const email = addFriendInput.value;
@@ -59,23 +53,60 @@ window.onload = function() {
 			}
 		}
 	});
-	
+
+	function deleteSelectedFriend() {
+		const selectedFriend = this.parentElement.parentElement;
+		const email = this.previousSibling.innerText;
+		const index = selectedFriends.indexOf(email);
+
+		selectedFriends.splice(index, 1);
+		selectedFriend.remove();
+	}
+
 	// 친구 초대 모달내에서 '전송' 버튼 이벤트
 	sendButton.addEventListener("click", () => {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
 		} else {
-			console.log("start loading ...");
-			
-			// TODO
-			document.body.appendChild(loadingRing);
-			
+			const loadingRing = makeLoadingRingElement("초대 메일 전송 중");
+			friendListWrapper.appendChild(loadingRing);
+
+			modal.style.display = "none";
+			sendButton.style.display = "none";
+
 			Request.postAsyncRequest("/add-friend", selectedFriends, (validatedUsers) => {
-				console.log("end loading ...");
-				const givenValidatedUsers = JSON.parse(validatedUsers);
-				console.log(givenValidatedUsers);
+				loadingRing.remove();
+				sendButton.style.display = "";
+
+				let msg = "";
+
+				JSON.parse(validatedUsers).forEach(user => {
+					msg += formatMessage(user) + "\n";
+				});
+
+				alert(msg);
 			});
 		}
 	});
+
+	function makeLoadingRingElement(title) {
+		let loadingRing = document.createElement("loading-ring");
+		loadingRing.setAttribute("title", title);
+		return loadingRing;
+	}
+
+	function formatMessage(user) {
+		let msg = "";
+
+		if (user.status === "CAN_ADD") {
+			msg += `${user.email} 님에게 초대 메일을 보냈습니다.`;
+		} else if (user.status === "ALREADY_FRIEND") {
+			msg += `${user.email} 님과는 이미 친구입니다.`;
+		} else {
+			msg += `${user.email} 는 존재하지 않는 회원입니다.`;
+		}
+
+		return msg;
+	}
 
 };
