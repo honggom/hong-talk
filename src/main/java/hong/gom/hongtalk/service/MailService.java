@@ -32,6 +32,7 @@ public class MailService {
         	
         	Context context = new Context();
         	context.setVariable("from", dto.getHostEmail());
+        	context.setVariable("to", dto.getFriendEmail());
         	context.setVariable("keyMessage", dto.getKeyMessage());
         	
         	helper.setSubject("테스트 메일 전송");

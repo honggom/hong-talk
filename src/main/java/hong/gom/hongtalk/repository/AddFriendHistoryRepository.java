@@ -8,5 +8,7 @@ import hong.gom.hongtalk.entity.SpUser;
 public interface AddFriendHistoryRepository extends JpaRepository<AddFriendHistory, Long>{
 	
 	AddFriendHistory findByUserAndFriend(SpUser user, SpUser friend);
+	
+	AddFriendHistory findByUserAndFriendAndKeyMessage(SpUser user, SpUser friend, String keyMessage);
 
 }

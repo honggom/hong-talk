@@ -36,12 +36,12 @@ public class FriendService {
 	
 	@Transactional
 	public List<UserDTO> addFriendsService(List<String> emails, String hostEmail) {
-		List<UserDTO> validatedUsers = validate(emails, hostEmail);
+		List<UserDTO> validatedUsers = validateUser(emails, hostEmail);
 		addFriends(validatedUsers, hostEmail);
 		return validatedUsers;
 	}
 		
-	private List<UserDTO> validate(List<String> emails, String hostEmail) {
+	private List<UserDTO> validateUser(List<String> emails, String hostEmail) {
 		List<UserDTO> validatedUsers = new ArrayList<>();
 		SpUser hostUser = spUserRepository.findByEmail(hostEmail);
 		
@@ -97,6 +97,36 @@ public class FriendService {
 			history.setKeyMessage(dto.getKeyMessage());
 			addFriendHistoryRepository.save(history);
 		}
+	}
+	
+	@Transactional
+	public void acceptService(AddFriendHistoryDTO dto) {
+		validateHistory(dto);
+		
+	}
+	
+	private void validateHistory(AddFriendHistoryDTO dto) {
+		AddFriendHistory history = findHistory(dto);
+		
+		// TODO 초대 기록 검증
+		if(history == null) { // 초대 기록이 없거나 재전송해서 기록이 변경됨
+		
+		} else { // 일치하는 초대기록이 있음
+			
+			if() { // 유효기간이 지났으면 
+				 
+			} else { // 정상 처리
+				
+			}
+		}
+	}
+	
+	private AddFriendHistory findHistory(AddFriendHistoryDTO dto) {
+		SpUser user = spUserRepository.findByEmail(dto.getHostEmail());
+		SpUser friend = spUserRepository.findByEmail(dto.getFriendEmail());
+		String keyMessage = dto.getKeyMessage();
+		
+		return addFriendHistoryRepository.findByUserAndFriendAndKeyMessage(user, friend, keyMessage);
 	}
 }
 
