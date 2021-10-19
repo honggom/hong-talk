@@ -1,5 +1,6 @@
 package hong.gom.hongtalk.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Service;
 
 import hong.gom.hongtalk.dto.AddFriendHistoryDTO;
 import hong.gom.hongtalk.dto.UserDTO;
+import hong.gom.hongtalk.dto.enums.AcceptRequestResult;
+import hong.gom.hongtalk.dto.enums.AddFriendHistoryStatus;
 import hong.gom.hongtalk.dto.enums.UserStatus;
 import hong.gom.hongtalk.entity.AddFriendHistory;
+import hong.gom.hongtalk.entity.FriendRelation;
 import hong.gom.hongtalk.entity.SpUser;
 import hong.gom.hongtalk.repository.AddFriendHistoryRepository;
 import hong.gom.hongtalk.repository.FriendRelationRepository;
@@ -34,6 +38,7 @@ public class FriendService {
 	
 	private final AddFriendHistoryRepository addFriendHistoryRepository; 
 	
+	// 친구 추가 서비스
 	@Transactional
 	public List<UserDTO> addFriendsService(List<String> emails, String hostEmail) {
 		List<UserDTO> validatedUsers = validateUser(emails, hostEmail);
@@ -70,10 +75,10 @@ public class FriendService {
 		validatedUsers.stream().forEach(user -> {
 			if(user.getStatus() == UserStatus.CAN_ADD) {
 				AddFriendHistoryDTO addFriendHistoryDTO = AddFriendHistoryDTO.builder()
-						                                .hostEmail(hostEmail)
-						                                .friendEmail(user.getEmail())
-						                                .keyMessage(RandomWordGenerator.generateRandomWord())
-						                                .build();
+						                                          .hostEmail(hostEmail)
+						                                          .friendEmail(user.getEmail())
+						                                          .keyMessage(RandomWordGenerator.generateRandomWord())
+						                                          .build();
 				
 				mailService.sendTo(addFriendHistoryDTO);
 				setHistory(addFriendHistoryDTO);
@@ -88,35 +93,46 @@ public class FriendService {
 		
 		if(history == null) { // 이전에 초대한 기록이 없으면 
 			addFriendHistoryRepository.save(AddFriendHistory.builder()
-								                    .user(from)
-								                    .friend(to)
-								                    .keyMessage(dto.getKeyMessage())
-								                    .build()
-                                            );
+								                            .user(from)
+								                            .friend(to)
+								                            .keyMessage(dto.getKeyMessage())
+								                            .build());
 		} else {
 			history.setKeyMessage(dto.getKeyMessage());
 			addFriendHistoryRepository.save(history);
 		}
 	}
 	
+	// 친구 추가 동의 서비스
 	@Transactional
-	public void acceptService(AddFriendHistoryDTO dto) {
-		validateHistory(dto);
+	public AcceptRequestResult acceptService(AddFriendHistoryDTO dto) {
+		AddFriendHistoryStatus historyStatus = validateHistory(dto);
+		
+		if(historyStatus == AddFriendHistoryStatus.OK) {
+			if(isAlreadyFriend(dto)) {
+				return AcceptRequestResult.ALREADY_FRIEND;
+			} else {
+				setRelation(dto);
+				return AcceptRequestResult.OK;
+			}
+		} else {
+			return AcceptRequestResult.NOT_OK;
+		} 
 		
 	}
 	
-	private void validateHistory(AddFriendHistoryDTO dto) {
+	private AddFriendHistoryStatus validateHistory(AddFriendHistoryDTO dto) {
 		AddFriendHistory history = findHistory(dto);
 		
-		// TODO 초대 기록 검증
-		if(history == null) { // 초대 기록이 없거나 재전송해서 기록이 변경됨
-		
-		} else { // 일치하는 초대기록이 있음
+		if(history == null) {            
+			return AddFriendHistoryStatus.NOT_OK;       // 초대 기록이 없거나 재전송해서 기록이 변경됨
+		} else {
+			LocalDateTime savedDate = history.getUpdatedAt();
 			
-			if() { // 유효기간이 지났으면 
-				 
-			} else { // 정상 처리
-				
+			if(LocalDateTime.now().isAfter(savedDate.plusDays(3))) {                    
+				return AddFriendHistoryStatus.EXPIRED;  // 유효기간이 지났으면
+			} else {                     
+				return AddFriendHistoryStatus.OK;       // 정상 처리
 			}
 		}
 	}
@@ -127,6 +143,37 @@ public class FriendService {
 		String keyMessage = dto.getKeyMessage();
 		
 		return addFriendHistoryRepository.findByUserAndFriendAndKeyMessage(user, friend, keyMessage);
+	}
+	
+	private void setRelation(AddFriendHistoryDTO dto) {
+		SpUser user = spUserRepository.findByEmail(dto.getHostEmail());
+		SpUser friend = spUserRepository.findByEmail(dto.getFriendEmail());
+		
+		FriendRelation fr1 = FriendRelation.builder()
+				                           .user(user)
+		                                   .friend(friend)
+				                           .build();
+		
+		FriendRelation fr2 = FriendRelation.builder()
+                                           .user(friend)
+                                           .friend(user)
+                                           .build();
+		
+		friendRelationRepository.saveAll(List.of(fr1, fr2));
+	}
+	
+	private boolean isAlreadyFriend(AddFriendHistoryDTO dto) {
+		SpUser user = spUserRepository.findByEmail(dto.getHostEmail());
+		SpUser friend = spUserRepository.findByEmail(dto.getFriendEmail());
+		
+		int friendRelationCount1 = friendRelationRepository.countByUserAndFriend(user, friend);
+		int friendRelationCount2 = friendRelationRepository.countByUserAndFriend(friend, user);
+		
+		if(friendRelationCount1 == 1 || friendRelationCount2 == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 

@@ -7,7 +7,7 @@
 <body>
 	<h1>홍톡</h1>
 	<p th:text="${from}"></p>님이 친구 초대 요청을 보냈습니다.
-	<a th:href="@{http://localhost:8080/add-friend/accept(hostEmail=${from}, friendEmail=${to}, keyMessage=${keyMessage})}">승락</a>
+	<a th:href="@{http://localhost:8080/add-friend/accept(hostEmail=${from}, friendEmail=${to}, keyMessage=${keyMessage})}">승낙</a>
 </body>
 
 </html>
