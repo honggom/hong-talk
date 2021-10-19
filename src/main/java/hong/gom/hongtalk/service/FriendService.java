@@ -42,7 +42,7 @@ public class FriendService {
 	@Transactional
 	public List<UserDTO> addFriendsService(List<String> emails, String hostEmail) {
 		List<UserDTO> validatedUsers = validateUser(emails, hostEmail);
-		addFriends(validatedUsers, hostEmail);
+		addFriendRequest(validatedUsers, hostEmail);
 		return validatedUsers;
 	}
 		
@@ -71,9 +71,13 @@ public class FriendService {
 		return validatedUsers;
 	}
 	
-	private void addFriends(List<UserDTO> validatedUsers, String hostEmail) {				
+	private void addFriendRequest(List<UserDTO> validatedUsers, String hostEmail) {
+		SpUser host = spUserRepository.findByEmail(hostEmail);
+		
 		validatedUsers.stream().forEach(user -> {
 			if(user.getStatus() == UserStatus.CAN_ADD) {
+				SpUser friend = spUserRepository.findByEmail(user.getEmail());
+				
 				AddFriendHistoryDTO addFriendHistoryDTO = AddFriendHistoryDTO.builder()
 						                                          .hostEmail(hostEmail)
 						                                          .friendEmail(user.getEmail())

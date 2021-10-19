@@ -62,21 +62,25 @@ window.onload = function() {
 		selectedFriends.splice(index, 1);
 		selectedFriend.remove();
 	}
+	
+	let isAbleToClick = true;
 
 	// 친구 초대 모달내에서 '전송' 버튼 이벤트
 	sendButton.addEventListener("click", () => {
 		if (selectedFriends.length == 0) {
 			alert("최소 1명 이상 친구를 초대해주세요.");
+		} else if (!isAbleToClick) {
+			alert("메일 전송 중입니다.");
 		} else {
 			const loadingRing = makeLoadingRingElement("초대 메일 전송 중");
 			friendListWrapper.appendChild(loadingRing);
 
 			modal.style.display = "none";
-			sendButton.style.display = "none";
+			isAbleToClick = false;
 
 			Request.postAsyncRequest("/add-friend", selectedFriends, (validatedUsers) => {
 				loadingRing.remove();
-				sendButton.style.display = "";
+				isAbleToClick = true;
 
 				let msg = "";
 

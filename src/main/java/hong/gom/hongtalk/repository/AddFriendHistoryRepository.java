@@ -10,5 +10,7 @@ public interface AddFriendHistoryRepository extends JpaRepository<AddFriendHisto
 	AddFriendHistory findByUserAndFriend(SpUser user, SpUser friend);
 	
 	AddFriendHistory findByUserAndFriendAndKeyMessage(SpUser user, SpUser friend, String keyMessage);
+	
+	void deleteByUserAndFriend(SpUser user, SpUser friend);
 
 }
