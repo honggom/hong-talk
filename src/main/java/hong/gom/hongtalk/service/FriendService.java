@@ -38,7 +38,7 @@ public class FriendService {
 	
 	private final AddFriendHistoryRepository addFriendHistoryRepository; 
 	
-	// 친구 추가 서비스
+	// 친구 추가 이메일 전송 로직
 	@Transactional
 	public List<UserDTO> addFriendsService(List<String> emails, String hostEmail) {
 		List<UserDTO> validatedUsers = validateUser(emails, hostEmail);
@@ -107,7 +107,7 @@ public class FriendService {
 		}
 	}
 	
-	// 친구 추가 동의 서비스
+	// 친구 추가 이메일에 상대가 수락을 했을 경우 처리 로직
 	@Transactional
 	public AcceptRequestResult acceptService(AddFriendHistoryDTO dto) {
 		AddFriendHistoryStatus historyStatus = validateHistory(dto);
@@ -180,12 +180,3 @@ public class FriendService {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
