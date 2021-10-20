@@ -26,10 +26,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/add-friend")
 public class AddFriendController {
 	
-	// TODO
-	// 1. 친구 관계 확인
-	// 2. 웹 소켓 파악
-	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private final FriendService friendService;

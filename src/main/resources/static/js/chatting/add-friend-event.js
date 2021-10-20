@@ -62,7 +62,7 @@ window.onload = function() {
 		selectedFriends.splice(index, 1);
 		selectedFriend.remove();
 	}
-	
+
 	let isAbleToClick = true;
 
 	// 친구 초대 모달내에서 '전송' 버튼 이벤트
@@ -112,4 +112,23 @@ window.onload = function() {
 		return msg;
 	}
 
+	///////////////////////////////////////////////////
+	let ws = new WebSocket("ws://" + location.host + "/web-socket");
+	
+	ws.onopen = function(data) {
+		console.log(data);
+		console.log("소켓 열림");
+		ws.send("들리시나요?..");
+	}
+
+	ws.onmessage = function(data) {
+		console.log("데이터 도착함");
+		console.log(data);
+	}
+
+	ws.onclose = function(e){
+		console.log("소켓 닫힘");
+		console.log(e);
+	}
+	
 };
