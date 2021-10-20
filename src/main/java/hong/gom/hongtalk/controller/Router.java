@@ -2,6 +2,8 @@ package hong.gom.hongtalk.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +27,7 @@ public class Router {
     }
     
     @GetMapping("/chatting")
-    public Object check(Principal principal){
+    public Object check(Principal principal, HttpSession session){
         logger.info(principal.getName());
         return "chatting/chatting";
     }
