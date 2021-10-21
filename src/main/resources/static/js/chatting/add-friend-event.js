@@ -23,7 +23,7 @@ window.onload = function() {
 	});
 
 	// 친구 추가 모달 창 열기 이벤트
-	addFriendModalOpenButton.addEventListener("click", () => {
+	addFriendModalOpenButton.addEventListener("click", () => 
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 

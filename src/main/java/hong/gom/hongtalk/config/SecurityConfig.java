@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	// TODO get-friend-event.js 작성
-	
     private final SpOAuth2SuccessHandler successHandler;
     
     @Override

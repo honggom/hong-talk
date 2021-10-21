@@ -21,7 +21,7 @@ function getAsyncRequest(url, callback) {
 
 	xhr.onload = () => {
 		if (xhr.status == 200) {
-			callback();
+			callback(xhr.response);
 		} else {
 			location.reload();
 		}

@@ -179,4 +179,19 @@ public class FriendService {
 			return false;
 		}
 	}
+	
+	// 사용자의 친구 목록을 조회
+	public List<String> getFriends(String email) {
+		List<String> friendEmails = new ArrayList<>();
+		
+		SpUser user = spUserRepository.findByEmail(email);
+		List<FriendRelation> friendRelations =  friendRelationRepository.findByUser(user);
+		
+		friendRelations.stream()
+		               .forEach(
+				          fr -> friendEmails.add(fr.getFriend().getEmail())
+				       );
+		
+		return friendEmails;
+	}
 }
