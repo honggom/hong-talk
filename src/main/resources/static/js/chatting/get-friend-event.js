@@ -1,11 +1,14 @@
 import Request from "/static/js/common/ajax-request.js";
+import ElementFactory from "/static/js/common/element-factory.js";
 
-window.onload = function() {
+const friendListWrapper = document.getElementById("friend-list-wrapper");
 
-	Request.getAsyncRequest("/friend", (friends) => {
-		console.log("친구 목록");
-		console.log(friends);
-		console.log("친구 목록");
-	});
+Request.getAsyncRequest("/friend", (friends) => {
+	const friendList = JSON.parse(friends);
 
-}
+	if (friendList.length > 0) {
+		friendList.forEach((friend) => {
+			friendListWrapper.appendChild(ElementFactory.makeFriendIcon(friend));
+		})
+	}
+});

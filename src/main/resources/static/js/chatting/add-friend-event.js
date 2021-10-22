@@ -6,7 +6,6 @@ import LoadingRing from "/static/js/components/loading-ring.js";
 window.customElements.define("loading-ring", LoadingRing);
 
 window.onload = function() {
-
 	const modal = document.getElementById("add-friend-modal-wrapper");
 	const addFriendModalOpenButton = document.getElementById("add-friend-modal-open-button");
 	const addFriendButton = document.getElementById("add-friend-button");
@@ -23,7 +22,7 @@ window.onload = function() {
 	});
 
 	// 친구 추가 모달 창 열기 이벤트
-	addFriendModalOpenButton.addEventListener("click", () => 
+	addFriendModalOpenButton.addEventListener("click", () => {
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 
@@ -78,7 +77,7 @@ window.onload = function() {
 			modal.style.display = "none";
 			isAbleToClick = false;
 
-			Request.postAsyncRequest("/add-friend", selectedFriends, (validatedUsers) => {
+			Request.postAsyncRequest("/friend/add", selectedFriends, (validatedUsers) => {
 				loadingRing.remove();
 				isAbleToClick = true;
 
@@ -112,7 +111,7 @@ window.onload = function() {
 		return msg;
 	}
 
-	///////////////////////////////////////////////////
+	/*	
 	let ws = new WebSocket("ws://" + location.host + "/web-socket");
 	
 	ws.onopen = function(data) {
@@ -130,5 +129,5 @@ window.onload = function() {
 		console.log("소켓 닫힘");
 		console.log(e);
 	}
-	
+	*/
 }

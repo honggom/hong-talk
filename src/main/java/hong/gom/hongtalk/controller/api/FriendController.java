@@ -27,12 +27,12 @@ public class FriendController {
 	
 	private final FriendService friendService;
 	
-	@PostMapping("/add-friend")
+	@PostMapping("/friend/add")
 	public List<UserDTO> addFriend(@RequestBody List<String> emails, Principal principal) {
 		return friendService.addFriendsService(emails, principal.getName());
 	}
 	
-	@GetMapping("/add-friend/accept")
+	@GetMapping("/friend/add/accept")
 	public ResponseEntity<String> accept(AddFriendHistoryDTO acceptDto) {
 		AcceptRequestResult status = friendService.acceptService(acceptDto);
 		

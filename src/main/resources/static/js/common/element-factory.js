@@ -16,4 +16,11 @@ function makeNewSelectedFriend(email) {
 	return li;
 }
 
-export default {makeNewSelectedFriend}
+function makeFriendIcon(email) {
+	const div = document.createElement("div");
+	div.innerText = email;
+	
+	return div;
+}
+
+export default {makeNewSelectedFriend, makeFriendIcon}
