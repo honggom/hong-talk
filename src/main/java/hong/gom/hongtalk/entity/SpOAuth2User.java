@@ -3,6 +3,8 @@ package hong.gom.hongtalk.entity;
 import lombok.*;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import hong.gom.hongtalk.entity.listener.BaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

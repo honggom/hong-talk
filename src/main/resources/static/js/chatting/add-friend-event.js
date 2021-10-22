@@ -7,6 +7,7 @@ window.customElements.define("loading-ring", LoadingRing);
 
 window.onload = function() {
 	const modal = document.getElementById("add-friend-modal-wrapper");
+	const anotherModal = document.getElementById("make-chatting-room-modal-wrapper");
 	const addFriendModalOpenButton = document.getElementById("add-friend-modal-open-button");
 	const addFriendButton = document.getElementById("add-friend-button");
 	const addFriendInput = document.getElementById("add-friend-input");
@@ -23,6 +24,7 @@ window.onload = function() {
 
 	// 친구 추가 모달 창 열기 이벤트
 	addFriendModalOpenButton.addEventListener("click", () => {
+		anotherModal.style.display = "none";
 		modal.style.display = modal.style.display === "block" ? "none" : "block";
 	});
 

@@ -6,11 +6,12 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/css/chatting/chatting.css">
 	<script type="module" src="/static/js/chatting/add-friend-event.js"></script>
-	<script type="module" src="/static/js/chatting/get-friend-event.js"></script>
+	<script type="module" src="/static/js/chatting/get-friend.js"></script>
+	<script type="module" src="/static/js/chatting/make-chatting-room-event.js"></script>
 </head>
 
 <body>
-	<section layout:fragment="section">		
+	<section layout:fragment="section">
 		<div class="friend-section-wrapper">
 			<div class="add-friend-button-wrapper">
 				<p>친구 목록</p>
@@ -21,14 +22,23 @@
 					</span>
 				</div>
 			</div>
-			
-			<div id ="friend-list-wrapper">
-				
+
+			<div id="friend-list-wrapper">
+
 			</div>
 		</div>
 
 		<div class="chatting-section-wrapper">
-			채팅구역
+			<div class="chatting-section-head-wrapper">
+				<p>채팅방 목록</p>
+				<div>
+					<button id="make-chatting-room-button" type="button">채팅방 생성</button>
+				</div>
+			</div>
+
+			<div id="chatting-room-list-wrapper">
+
+			</div>
 		</div>
 
 		<div id="add-friend-modal-wrapper" class="add-friend-modal-wrapper">
@@ -47,6 +57,12 @@
 					<button id="send-button" type="button">전송</button>
 					<button id="add-friend-modal-close-button" type="button">X</button>
 				</div>
+			</div>
+		</div>
+
+		<div id="make-chatting-room-modal-wrapper" class="make-chatting-room-modal-wrapper">
+			<div class="make-chatting-room-modal">
+				<p class="make-chatting-room-title">채팅방 생성</p>
 			</div>
 		</div>
 

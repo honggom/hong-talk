@@ -3,6 +3,8 @@ package hong.gom.hongtalk.entity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
+import hong.gom.hongtalk.entity.listener.BaseEntity;
+
 import javax.persistence.*;
 
 @Getter

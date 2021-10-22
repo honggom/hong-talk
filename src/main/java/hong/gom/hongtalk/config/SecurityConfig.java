@@ -12,6 +12,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	// TODO
+	// 1. 채팅구역에 버튼 및 클릭 이벤트 만들기
+	// 2. 채팅방 엔티티 설계 
+	// 3. 클릭 이벤트 => 채팅방 생성기능
+	
     private final SpOAuth2SuccessHandler successHandler;
     
     @Override

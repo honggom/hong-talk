@@ -1,6 +1,5 @@
-package hong.gom.hongtalk.entity;
+package hong.gom.hongtalk.entity.listener;
 
-import hong.gom.hongtalk.entity.listener.Auditable;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;

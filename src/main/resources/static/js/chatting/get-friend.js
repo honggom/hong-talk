@@ -11,4 +11,5 @@ Request.getAsyncRequest("/friend", (friends) => {
 			friendListWrapper.appendChild(ElementFactory.makeFriendIcon(friend));
 		})
 	}
+	
 });
