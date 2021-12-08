@@ -33,6 +33,9 @@ public class SpOAuth2SuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException
     {
+    	System.out.print("인증 성공");
+    	System.out.print("인증 성공");
+    	System.out.print("인증 성공");
         Object principal = authentication.getPrincipal();
 
         if(principal instanceof OidcUser){
